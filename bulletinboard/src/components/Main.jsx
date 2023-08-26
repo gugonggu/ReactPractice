@@ -63,6 +63,10 @@ const Main = ({ articles, setArticles }) => {
                         date,
                         likes: 0,
                     };
+                    e.target.title.value = "";
+                    e.target.end.value = "";
+                    e.target.content.value = "";
+                    e.target.imgSrc.value = "";
                     list.unshift(obj);
                     setArticles(list);
                 }}
