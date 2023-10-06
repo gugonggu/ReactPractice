@@ -43,9 +43,9 @@
 
         <div class="container mt-5">
             <ul class="list">
-                <li class="tab-button">Products</li>
-                <li class="tab-button orange">Information</li>
-                <li class="tab-button">Shipping</li>
+                <li class="tab-button" data-id="0">Products</li>
+                <li class="tab-button orange" data-id="1">Information</li>
+                <li class="tab-button" data-id="2">Shipping</li>
             </ul>
             <div class="tab-content">
                 <p>상품설명입니다. Product</p>
@@ -59,16 +59,38 @@
         </div>
 
         <script>
+            // const buttons = document.querySelectorAll(".tab-button");
+            // const contents = document.querySelectorAll(".tab-content");
+
+            // buttons.forEach((v, i) => {
+            //     v.addEventListener("click", (e) => {
+            //         buttons.forEach((v2) => v2.classList.remove("orange"));
+            //         contents.forEach((v2) => v2.classList.remove("show"));
+            //         e.target.classList.add("orange");
+            //         contents[i].classList.add("show");
+            //     });
+            // });
+
             const buttons = document.querySelectorAll(".tab-button");
             const contents = document.querySelectorAll(".tab-content");
+            const changeTab = (num) => {
+                buttons.forEach((v) => v.classList.remove("orange"));
+                contents.forEach((v) => v.classList.remove("show"));
+                buttons[num].classList.add("orange");
+                contents[num].classList.add("show");
+            };
+            const list = document.querySelector(".list");
+            const listChildren = list.children;
 
-            buttons.forEach((v, i) => {
-                v.addEventListener("click", (e) => {
-                    buttons.forEach((v2) => v2.classList.remove("orange"));
-                    contents.forEach((v2) => v2.classList.remove("show"));
-                    e.target.classList.add("orange");
-                    contents[i].classList.add("show");
-                });
+            list.addEventListener("click", (e) => {
+                // if (e.target === listChildren[0]) {
+                //     changeTab(0);
+                // } else if (e.target === listChildren[1]) {
+                //     changeTab(1);
+                // } else if (e.target === listChildren[2]) {
+                //     changeTab(2);
+                // }
+                changeTab(e.target.dataset.id);
             });
         </script>
     </body>
