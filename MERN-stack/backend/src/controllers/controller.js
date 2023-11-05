@@ -17,8 +17,24 @@ export const post = async (req, res) => {
 };
 
 export const postList = async (req, res) => {
+    let sort = {};
+    if (req.body.sort === "최신순") {
+        sort.createdAt = -1;
+    } else {
+        sort.repleNum = -1;
+    }
+
     try {
-        const list = await Post.find().populate("author");
+        const list = await Post.find({
+            $or: [
+                { title: { $regex: req.body.searchTerm } },
+                { content: { $regex: req.body.searchTerm } },
+            ],
+        })
+            .populate("author")
+            .sort(sort)
+            .skip(req.body.skip)
+            .limit(5);
         return res.status(200).json({ success: true, postList: list });
     } catch (e) {
         console.log(e);

@@ -41,15 +41,36 @@ const Heading = () => {
                 </Navbar.Collapse>
                 <Navbar.Collapse className="justify-content-end">
                     {user.accessToken ? (
-                        <Navbar.Text
-                            style={{ color: "white", cursor: "pointer" }}
-                            onClick={() => {
-                                logoutHandler();
-                                navigate("/");
-                            }}
-                        >
-                            Logout
-                        </Navbar.Text>
+                        <>
+                            <Navbar.Text
+                                style={{
+                                    color: "white",
+                                    cursor: "pointer",
+                                    marginRight: "10px",
+                                }}
+                                onClick={() => {
+                                    logoutHandler();
+                                    navigate("/");
+                                }}
+                            >
+                                Logout
+                            </Navbar.Text>
+                            <br />
+                            <Navbar.Text
+                                style={{ color: "white", cursor: "pointer" }}
+                            >
+                                <Link
+                                    to="/mypage"
+                                    style={{
+                                        color: "white",
+                                        textDecoration: "none",
+                                        marginRight: "10px",
+                                    }}
+                                >
+                                    My Page
+                                </Link>
+                            </Navbar.Text>
+                        </>
                     ) : (
                         <Link
                             to="/login"
